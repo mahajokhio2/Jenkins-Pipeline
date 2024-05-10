@@ -20,9 +20,9 @@ pipeline{
                     mail to: "mahajokhio@gmail.com",
                         subject: "Completed: Unit and Integration Tests - ${currentBuild.fullDisplayName}",
                         body: "Tests completed with status: ${currentBuild.currentResult}.",
+                }
             }
         }
-    }
         stage('Code Analysis'){
             steps {
                 echo "Analyzing code..."
