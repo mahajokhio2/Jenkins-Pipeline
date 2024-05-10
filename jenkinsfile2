@@ -14,6 +14,7 @@ pipeline{
                 echo "Integration tests"
                 // Use JUnit for unit testing, Mockito for mocks
                 sh 'mvn test'
+            }
                 post {
                 always {
                     mail to: "mahajokhio@gmail.com",
@@ -21,7 +22,6 @@ pipeline{
                         body: "Tests completed with status: ${currentBuild.currentResult}.",
                 }
             }
-        }
         }
         stage('Code Analysis'){
             steps {
