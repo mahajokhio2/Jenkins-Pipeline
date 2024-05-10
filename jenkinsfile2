@@ -10,6 +10,7 @@ pipeline {
         }
         stage('Test') {
             steps {
+                echo "Testing"
                 echo "Unit tests"
                 echo "Integration tests"
                 // Use JUnit for unit testing, Mockito for mocks
