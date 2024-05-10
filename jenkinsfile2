@@ -41,8 +41,8 @@ pipeline {
                 always {
                     mail to: "mahajokhio@gmail.com",
                         subject: "Completed: Security Scan - ${currentBuild.fullDisplayName}",
-                        body: "<p>Security scan completed with status: ${currentBuild.currentResult}</p>
-                                <p>Security Scan log attached.</p>"
+                        body: """<p>Security scan completed with status: ${currentBuild.currentResult}</p>
+                                <p>Security Scan log attached.</p>"""
                 }
             }
         }
