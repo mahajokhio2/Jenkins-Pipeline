@@ -1,29 +1,29 @@
-pipeline{
+pipeline {
     agent any
-    stages{
-        stage('Build'){
-            steps{
+    stages {
+        stage('Build') {
+            steps {
                 echo "Fetch the source code."
                 echo "Compile the code and generate any necessary artifacts."
                 sh 'mvn clean package'
             }
         }
-        stage('Test'){
+        stage('Test') {
             steps {
                 echo "Unit tests"
                 echo "Integration tests"
                 // Use JUnit for unit testing, Mockito for mocks
                 sh 'mvn test'
             }
-                post {
+            post {
                 always {
                     mail to: "mahajokhio@gmail.com",
                         subject: "Completed: Unit and Integration Tests - ${currentBuild.fullDisplayName}",
-                        body: "Tests completed with status: ${currentBuild.currentResult}.",
+                        body: "Tests completed with status: ${currentBuild.currentResult}."
                 }
             }
         }
-        stage('Code Analysis'){
+        stage('Code Analysis') {
             steps {
                 echo "Analyzing code..."
                 // SonarQube could be used here
@@ -37,13 +37,13 @@ pipeline{
                 sh 'mvn dependency-check:check'
             }
             post {
-            always {
-                mail to: "mahajokhio@gmail.com",
-                    subject: "Completed: Security Scan - ${currentBuild.fullDisplayName}",
-                    body: "Security scan completed with status: ${currentBuild.currentResult}.",
+                always {
+                    mail to: "mahajokhio@gmail.com",
+                        subject: "Completed: Security Scan - ${currentBuild.fullDisplayName}",
+                        body: "Security scan completed with status: ${currentBuild.currentResult}."
+                }
             }
         }
-    }
         stage('Deploy to Staging') {
             steps {
                 echo 'Deploying to staging environment...'
@@ -66,4 +66,4 @@ pipeline{
             }
         }
     }
-
+}
