@@ -19,8 +19,7 @@ pipeline {
                 always {
                     mail to: "mahajokhio@gmail.com",
                         subject: "Completed: Unit and Integration Tests - ${currentBuild.fullDisplayName}",
-                        body: ""Tests completed with status: ${currentBuild.currentResult}.
-                                Testing log attached.""
+                        body: """Tests completed with status: ${currentBuild.currentResult}. Testing log is attached below."""
                 }
             }
         }
@@ -41,8 +40,7 @@ pipeline {
                 always {
                     mail to: "mahajokhio@gmail.com",
                         subject: "Completed: Security Scan - ${currentBuild.fullDisplayName}",
-                        body: """Security scan completed with status: ${currentBuild.currentResult}
-                                Security Scan log attached."""
+                        body: """Security scan completed with status: ${currentBuild.currentResult}. Security Scan log is attached below."""
                 }
             }
         }
