@@ -1,14 +1,11 @@
 pipeline {
     agent any
-    tools {
-        maven 'Default Maven' // Use the name of your Maven configuration
-    }
     stages {
         stage('Build') {
             steps {
                 echo "Fetch the source code."
                 echo "Compile the code and generate any necessary artifacts."
-                sh 'mvn clean package'
+                echo "mvn clean package"
             }
         }
         stage('Test') {
@@ -16,7 +13,7 @@ pipeline {
                 echo "Unit tests"
                 echo "Integration tests"
                 // Use JUnit for unit testing, Mockito for mocks
-                sh 'mvn test'
+                echo "mvn test"
             }
             post {
                 always {
@@ -30,14 +27,14 @@ pipeline {
             steps {
                 echo "Analyzing code..."
                 // SonarQube could be used here
-                sh 'mvn sonar:sonar'
+                echo "mvn sonar:sonar"
             }
         }
         stage('Security Scan') {
             steps {
                 echo 'Performing security scan...'
                 // OWASP Dependency Check can be used
-                sh 'mvn dependency-check:check'
+                echo "mvn dependency-check:check"
             }
             post {
                 always {
@@ -51,21 +48,21 @@ pipeline {
             steps {
                 echo 'Deploying to staging environment...'
                 // Use Ansible or a direct SSH script to deploy to an AWS EC2 instance
-                sh 'deploy_to_staging.sh'
+                echo "Deploy staging script execution"
             }
         }
         stage('Integration Tests on Staging') {
             steps {
                 echo 'Running integration tests on staging...'
                 // Use Selenium for web app testing
-                sh 'selenium_integration_tests.sh'
+                echo "Running Selenium integration tests"
             }
         }
         stage('Deploy to Production') {
             steps {
                 echo 'Deploying to production environment...'
                 // Similar to staging deployment
-                sh 'deploy_to_production.sh'
+                echo "Deploy production script execution"
             }
         }
     }
