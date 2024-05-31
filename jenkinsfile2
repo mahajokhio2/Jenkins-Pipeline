@@ -17,7 +17,7 @@ pipeline {
                     mail to: "mahajokhio@gmail.com",
                         subject: "Completed: Testing - ${currentBuild.fullDisplayName}",
                         body: """Security scan completed with status: ${currentBuild.currentResult}. Security Scan log is attached below.""",
-                        attachLog: true,
+                        attachLog: true
                 }
             }
         }
