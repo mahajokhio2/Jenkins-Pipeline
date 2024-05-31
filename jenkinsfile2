@@ -8,20 +8,23 @@ pipeline {
                 echo "mvn clean package"
             }
         }
-        stage('Test') {
+        stage('Code Analysis') {
             steps {
-                echo "Testing"
-                echo "Unit tests"
-                echo "Integration tests"
-                // Use JUnit for unit testing, Mockito for mocks
-                echo "mvn test"
+                echo 'Analyzing the code using Jenkins and SonarQube'
             }
-            post {
-                always {
-                    mail to: "mahajokhio@gmail.com",
-                        subject: "Completed: Unit and Integration Tests - ${currentBuild.fullDisplayName}",
+        }
+        stage('Security Scan') {
+            steps {
+                echo 'Performing a security scan on the code using OWASP ZAP'
+            }
+            post{
+                always{
+                    emailext (
+                        subject: 'Security Scan Status',
+                        to: 'madhikarmianshu@gmail.com',
                         body: "${currentBuild.result}: Job ",
                         attachLog: true,
+                    )
                 }
             }
         }
