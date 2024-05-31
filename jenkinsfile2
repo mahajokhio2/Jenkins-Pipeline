@@ -20,7 +20,8 @@ pipeline {
                 always {
                     mail to: "mahajokhio@gmail.com",
                         subject: "Completed: Unit and Integration Tests - ${currentBuild.fullDisplayName}",
-                        body: """Tests completed with status: ${currentBuild.currentResult}. Testing log is attached below."""
+                        body: """Tests completed with status: ${currentBuild.currentResult}. Testing log is attached below.""",
+                        attachLog: true
                 }
             }
         }
