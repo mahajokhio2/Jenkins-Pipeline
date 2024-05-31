@@ -21,7 +21,7 @@ pipeline {
                     mail to: "mahajokhio@gmail.com",
                         subject: "Completed: Unit and Integration Tests - ${currentBuild.fullDisplayName}",
                         body: "${currentBuild.result}: Job ",
-                        attachLog: true
+                        attachLog: true,
                 }
             }
         }
